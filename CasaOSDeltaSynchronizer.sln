@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CasaOSDeltaSynchronizer", "CasaOSDeltaSynchronizer\CasaOSDeltaSynchronizer.csproj", "{A20804E0-2B5E-4379-8948-7016E44073BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A20804E0-2B5E-4379-8948-7016E44073BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A20804E0-2B5E-4379-8948-7016E44073BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A20804E0-2B5E-4379-8948-7016E44073BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A20804E0-2B5E-4379-8948-7016E44073BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
