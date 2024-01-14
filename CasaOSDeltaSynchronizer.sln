@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CasaOSDeltaSynchronizer", "CasaOSDeltaSynchronizer\CasaOSDeltaSynchronizer.csproj", "{A20804E0-2B5E-4379-8948-7016E44073BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CasaOSDeltaSynchronizer.Test", "CasaOSDeltaSynchronizer.Test\CasaOSDeltaSynchronizer.Test.csproj", "{E36A48DB-E797-4892-BD37-5BDF853EFE23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{A20804E0-2B5E-4379-8948-7016E44073BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A20804E0-2B5E-4379-8948-7016E44073BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A20804E0-2B5E-4379-8948-7016E44073BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E36A48DB-E797-4892-BD37-5BDF853EFE23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E36A48DB-E797-4892-BD37-5BDF853EFE23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E36A48DB-E797-4892-BD37-5BDF853EFE23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E36A48DB-E797-4892-BD37-5BDF853EFE23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
