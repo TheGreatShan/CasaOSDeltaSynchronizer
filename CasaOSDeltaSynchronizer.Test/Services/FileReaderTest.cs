@@ -2,7 +2,7 @@ using CasaOSDeltaSynchronizer.Services;
 
 namespace CasaOSDeltaSynchronizer.Test.Services;
 
-public class UnitTest1
+public class FileReaderTest
 {
     [Fact]
     public void read_app_settings()
