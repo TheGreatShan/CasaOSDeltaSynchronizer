@@ -12,5 +12,14 @@ public class FileReaderTest
         Assert.Equal("Client", readSettings.ClientLocation);
         Assert.Equal("Server", readSettings.ServerLocation);
     }
+
+    [Fact]
+    public void read_app_settings_with_passing_deserialization_object()
+    {
+        var readSettings = FileReader.Read<AppSettings>("Services/appsettings.json");
+        
+        Assert.Equal("Client", readSettings.ClientLocation);
+        Assert.Equal("Server", readSettings.ServerLocation);
+    }
 }
 
