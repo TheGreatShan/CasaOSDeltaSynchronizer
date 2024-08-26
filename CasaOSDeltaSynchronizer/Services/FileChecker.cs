@@ -4,7 +4,7 @@ namespace CasaOSDeltaSynchronizer.Services;
 
 internal class FileChecker
 {
-    public bool IsSame(string localPath, string serverPath)
+    public static bool IsSame(string localPath, string serverPath)
     {
         var localHash = CalculateSHA256(new FileInfo(localPath));
         var serverHash = CalculateSHA256(new FileInfo(serverPath));   

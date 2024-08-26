@@ -12,9 +12,8 @@ public class FileCheckerTest
         
         File.WriteAllText(filePath, "test");
         
-        var fileChecker = new FileChecker();
         
-        var isSame = fileChecker.IsSame(filePath, filePath);
+        var isSame = FileChecker.IsSame(filePath, filePath);
         Assert.True(isSame);
     }
 
@@ -28,7 +27,7 @@ public class FileCheckerTest
         File.WriteAllText(filePath, "test");
         File.WriteAllText(filePath2, "test2");
 
-        var isSame = new FileChecker().IsSame(filePath, filePath2);
+        var isSame = FileChecker.IsSame(filePath, filePath2);
         Assert.False(isSame);
     }
 }
