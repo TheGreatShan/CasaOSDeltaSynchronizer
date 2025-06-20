@@ -11,14 +11,17 @@ public class WatcherTest
         var path = disposableDirectory.Path;
 
         using var watcher = new CasaOSDeltaSynchronizer.Watcher.Watcher(path);
-        
+
         const string fileName = "test.txt";
         var fullPath = Path.Combine(path, fileName);
         File.WriteAllText(fullPath, fileName);
         Thread.Sleep(100);
-        
-        Assert.Equal(fullPath, watcher.ChangedFilePaths);
-        
+
+        var expected = new List<CasaOSDeltaSynchronizer.Watcher.Path> { new(fullPath) };
+        Assert.Equivalent(
+            expected,
+            watcher.ChangedFilePaths);
+
         disposableDirectory.Dispose();
     }
 }
