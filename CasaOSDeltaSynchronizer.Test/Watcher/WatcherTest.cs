@@ -18,5 +18,7 @@ public class WatcherTest
         Thread.Sleep(100);
         
         Assert.Equal(fullPath, watcher.ChangedFilePaths);
+        
+        disposableDirectory.Dispose();
     }
 }
