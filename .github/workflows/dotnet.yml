@@ -1,4 +1,4 @@
-name: .NET + SonarQube analysis
+name: dotnet CI
 
 on:
   push:
