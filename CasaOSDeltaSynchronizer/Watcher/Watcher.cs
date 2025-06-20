@@ -23,9 +23,3 @@ internal class Watcher : IDisposable
         _fileSystemWatcher.Dispose();
     }
 }
-
-internal class FileCreatedEventArgs : EventArgs
-{
-    internal string FileName { get; }
-    internal FileCreatedEventArgs(string fileName) => FileName = fileName;
-}
