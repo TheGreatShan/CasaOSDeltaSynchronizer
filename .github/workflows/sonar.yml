@@ -38,11 +38,18 @@ jobs:
   
       - name: Build + Analyze
         run: |
-          dotnet-sonarscanner begin /k:"${{ secrets.PROJECT_KEY }}" /o:"${{ secrets.ORGANIZATION }}" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" /d:sonar.cs.opencover.reportsPaths=coverage.xml
+          dotnet-sonarscanner begin \
+            /k:"${{ secrets.PROJECT_KEY }}" \
+            /o:"${{ secrets.ORGANIZATION }}" \
+            /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \
+            /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" \
+            /d:sonar.cs.opencover.reportsPaths=coverage.xml
+          
           dotnet build --no-incremental
-          coverlet .\CasaOSDeltaSynchronizer.Test\bin\Debug\net9.0\CasaOSDeltaSynchronizer.Test.dll
-            --target "dotnet"
-            --targetargs "test --no-build"
-            -f=opencover
+          coverlet .\CasaOSDeltaSynchronizer.Test\bin\Debug\net9.0\CasaOSDeltaSynchronizer.Test.dll \
+            --target "dotnet" \
+            --targetargs "test --no-build" \
+            -f=opencover \
             -o="coverage.xml"
+          
           dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
