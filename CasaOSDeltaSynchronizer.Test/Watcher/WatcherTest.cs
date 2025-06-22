@@ -1,4 +1,6 @@
 using CasaOSDeltaSynchronizer.Services;
+using CasaOSDeltaSynchronizer.Watcher;
+using Path = System.IO.Path;
 
 namespace CasaOSDeltaSynchronizer.Test.Watcher;
 
@@ -17,7 +19,7 @@ public class WatcherTest
         File.WriteAllText(fullPath, fileName);
         Thread.Sleep(100);
 
-        var expected = new List<CasaOSDeltaSynchronizer.Watcher.Path> { new(fullPath) };
+        var expected = new List<Change> { new(new CasaOSDeltaSynchronizer.Watcher.Path(fullPath), ChangeType.Created) };
         Assert.Equivalent(
             expected,
             watcher.ChangedFilePaths);
