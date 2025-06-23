@@ -10,8 +10,16 @@ internal class Watcher : IDisposable
         _fileSystemWatcher = new FileSystemWatcher(path);
         _fileSystemWatcher.Created += OnCreated;
         _fileSystemWatcher.Changed += OnChanged;
+        _fileSystemWatcher.Deleted += OnDeleted;
+        
+        
         _fileSystemWatcher.IncludeSubdirectories = true;
         _fileSystemWatcher.EnableRaisingEvents = true;
+    }
+
+    private void OnDeleted(object sender, FileSystemEventArgs e)
+    {
+        ChangedFilePaths.Add(new Change(new Path(e.FullPath), ChangeType.Removed));
     }
 
     private void OnChanged(object sender, FileSystemEventArgs e)

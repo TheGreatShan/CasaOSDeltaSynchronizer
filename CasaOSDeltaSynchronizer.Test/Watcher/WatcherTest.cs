@@ -4,6 +4,7 @@ using Path = System.IO.Path;
 
 namespace CasaOSDeltaSynchronizer.Test.Watcher;
 
+[Collection("Disable parallel tests")]
 public class WatcherTest
 {
     [Fact]
@@ -23,7 +24,7 @@ public class WatcherTest
         Assert.Equivalent(
             expected,
             watcher.ChangedFilePaths);
-
+ 
         disposableDirectory.Dispose();
     }    
     
@@ -44,6 +45,29 @@ public class WatcherTest
         Thread.Sleep(100);
         
         var expected = new List<Change> { new(new CasaOSDeltaSynchronizer.Watcher.Path(fullPath), ChangeType.Created), new(new CasaOSDeltaSynchronizer.Watcher.Path(fullPath), ChangeType.Changed) };
+
+        Assert.Equivalent(expected, watcher.ChangedFilePaths);
+        
+        disposableDirectory.Dispose();
+    }
+    
+    [Fact]
+    void should_return_filename_if_file_was_deleted()
+    {
+        var disposableDirectory = DisposableFileSystem.DisposableDirectory.Create();
+        var path = disposableDirectory.Path;
+
+        using var watcher = new CasaOSDeltaSynchronizer.Watcher.Watcher(path);
+
+        const string fileName = "test.txt";
+        var fullPath = Path.Combine(path, fileName);
+        File.WriteAllText(fullPath, fileName);
+        Thread.Sleep(100);
+        
+        File.Delete(fullPath);
+        Thread.Sleep(100);
+        
+        var expected = new List<Change> { new(new CasaOSDeltaSynchronizer.Watcher.Path(fullPath), ChangeType.Created), new(new CasaOSDeltaSynchronizer.Watcher.Path(fullPath), ChangeType.Removed) };
 
         Assert.Equivalent(expected, watcher.ChangedFilePaths);
         

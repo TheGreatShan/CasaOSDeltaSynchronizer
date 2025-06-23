@@ -1,13 +1,6 @@
 namespace CasaOSDeltaSynchronizer.Watcher;
 
-public class Path
+public class Path(string path)
 {
-    public string FullPath { get; }
-
-    public Path(string path)
-    {
-        if (!System.IO.Path.Exists(path)) 
-            throw new InvalidDataException($"Path '{path}' does not exist.");
-        FullPath = path;
-    }
+    public string FullPath { get; } = path;
 };
