@@ -11,10 +11,15 @@ internal class Watcher : IDisposable
         _fileSystemWatcher.Created += OnCreated;
         _fileSystemWatcher.Changed += OnChanged;
         _fileSystemWatcher.Deleted += OnDeleted;
-        
+        _fileSystemWatcher.Renamed += OnRenamed;
         
         _fileSystemWatcher.IncludeSubdirectories = true;
         _fileSystemWatcher.EnableRaisingEvents = true;
+    }
+
+    private void OnRenamed(object sender, RenamedEventArgs e)
+    {
+        ChangedFilePaths.Add(new Change(new Path(e.FullPath), ChangeType.Renamed));
     }
 
     private void OnDeleted(object sender, FileSystemEventArgs e)
