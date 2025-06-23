@@ -5,7 +5,7 @@ public record Change(Path Path, ChangeType Type);
 public enum ChangeType
 {
     Created,
-    Change,
+    Changed,
     Removed,
     Renamed
 }
