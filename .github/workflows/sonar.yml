@@ -43,7 +43,7 @@ jobs:
             /o:"${{ secrets.ORGANIZATION }}" \
             /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \
             /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" \
-            /d:sonar.cs.opencover.reportsPaths=coverage.xml
+            /d:sonar.cs.opencover.reportsPaths="coverage.xml"
           
           dotnet build --no-incremental
           coverlet .\CasaOSDeltaSynchronizer.Test\bin\Debug\net9.0\CasaOSDeltaSynchronizer.Test.dll \
