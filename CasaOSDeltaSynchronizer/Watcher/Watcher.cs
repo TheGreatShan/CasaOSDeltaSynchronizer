@@ -2,20 +2,39 @@ namespace CasaOSDeltaSynchronizer.Watcher;
 
 internal class Watcher : IDisposable
 {
-    private FileSystemWatcher _fileSystemWatcher;
-    public string ChangedFilePaths { get; private set; } = "";
+    private readonly FileSystemWatcher _fileSystemWatcher;
+    public List<Change> ChangedFilePaths { get; } = [];
+
     public Watcher(string path)
     {
         _fileSystemWatcher = new FileSystemWatcher(path);
         _fileSystemWatcher.Created += OnCreated;
+        _fileSystemWatcher.Changed += OnChanged;
+        _fileSystemWatcher.Deleted += OnDeleted;
+        _fileSystemWatcher.Renamed += OnRenamed;
         
         _fileSystemWatcher.IncludeSubdirectories = true;
         _fileSystemWatcher.EnableRaisingEvents = true;
     }
 
+    private void OnRenamed(object sender, RenamedEventArgs e)
+    {
+        ChangedFilePaths.Add(new Change(new Path(e.FullPath), ChangeType.Renamed));
+    }
+
+    private void OnDeleted(object sender, FileSystemEventArgs e)
+    {
+        ChangedFilePaths.Add(new Change(new Path(e.FullPath), ChangeType.Removed));
+    }
+
+    private void OnChanged(object sender, FileSystemEventArgs e)
+    {
+        ChangedFilePaths.Add(new Change(new Path(e.FullPath), ChangeType.Changed));
+    }
+
     private void OnCreated(object sender, FileSystemEventArgs e)
     {
-        ChangedFilePaths = e.FullPath;
+        ChangedFilePaths.Add(new Change(new Path(e.FullPath), ChangeType.Created));
     }
 
     public void Dispose()
