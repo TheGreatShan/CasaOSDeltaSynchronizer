@@ -7,11 +7,23 @@ internal class FileSyncer
 {
     internal static void Sync(Change change, Path target)
     {
-        if (change.Type == ChangeType.Created)
+        var combinedTargetPath = System.IO.Path.Combine(target.FullPath, change.Path.FullPath.Split("/").Last());
+        switch (change.Type)
         {
-            File.Copy(
-                change.Path.FullPath,
-                System.IO.Path.Combine(target.FullPath, change.Path.FullPath.Split("/").Last()));
+            case ChangeType.Created:
+                File.Copy(
+                    change.Path.FullPath,
+                    combinedTargetPath);
+                break;
+            case ChangeType.Changed:
+                File.Replace(change.Path.FullPath, combinedTargetPath, null);
+                break;
+            case ChangeType.Removed:
+                break;
+            case ChangeType.Renamed:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 }
