@@ -11,7 +11,7 @@ internal class FileReader
 
 internal static class AppSettingsReader
 {
-    public static AppSettings Read(string path) => 
+    internal static AppSettings Read(string path) => 
         FileReader.Read<AppSettings>(path);
 }
 
