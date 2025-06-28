@@ -1,6 +1,7 @@
 using CasaOSDeltaSynchronizer.Services;
 using CasaOSDeltaSynchronizer.Watcher;
 using Path = System.IO.Path;
+using File = System.IO.File;
 
 namespace CasaOSDeltaSynchronizer.Test.Watcher;
 
@@ -17,7 +18,7 @@ public class WatcherTest
 
         const string fileName = "test.txt";
         var fullPath = Path.Combine(path, fileName);
-        File.WriteAllText(fullPath, fileName);
+        System.IO.File.WriteAllText(fullPath, fileName);
         Thread.Sleep(100);
 
         var expected = new List<Change> { new(new CasaOSDeltaSynchronizer.Watcher.Path(fullPath), ChangeType.Created) };
@@ -38,10 +39,10 @@ public class WatcherTest
 
         const string fileName = "test.txt";
         var fullPath = Path.Combine(path, fileName);
-        File.WriteAllText(fullPath, fileName);
+        System.IO.File.WriteAllText(fullPath, fileName);
         Thread.Sleep(100);
 
-        File.WriteAllText(fullPath, "new file content");
+        System.IO.File.WriteAllText(fullPath, "new file content");
         Thread.Sleep(100);
 
         var expected = new List<Change>
@@ -65,10 +66,10 @@ public class WatcherTest
 
         const string fileName = "test.txt";
         var fullPath = Path.Combine(path, fileName);
-        File.WriteAllText(fullPath, fileName);
+        System.IO.File.WriteAllText(fullPath, fileName);
         Thread.Sleep(100);
 
-        File.Delete(fullPath);
+        System.IO.File.Delete(fullPath);
         Thread.Sleep(100);
 
         var expected = new List<Change>
@@ -92,11 +93,11 @@ public class WatcherTest
 
         const string fileName = "test.txt";
         var fullPath = Path.Combine(path, fileName);
-        File.WriteAllText(fullPath, fileName);
+        System.IO.File.WriteAllText(fullPath, fileName);
         Thread.Sleep(100);
 
         var newFullPath = Path.Combine(path, "newFile.txt");
-        File.Move(fullPath, newFullPath);
+        System.IO.File.Move(fullPath, newFullPath);
         Thread.Sleep(100);
 
         var expected = new List<Change>
