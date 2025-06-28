@@ -19,8 +19,10 @@ internal class FileSyncer
                 File.Replace(change.Path.FullPath, combinedTargetPath, null);
                 break;
             case ChangeType.Removed:
+                File.Delete(combinedTargetPath);
                 break;
             case ChangeType.Renamed:
+                throw new ArgumentOutOfRangeException();
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
